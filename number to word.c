@@ -1,92 +1,65 @@
-#include <stdio.h>
-#include <string.h>
 
 
-int main() {
-    char a[20];
-    char *single[]={" zer0 "," one "," two "," three "," four"," five "," six "," seven "," eight "," nine "};
-    char *double_digit[]={""," ten "," eleve "," twelve "," thirteen "," fourteen "," fifteen "," sixteen "," seventeen "," eighteen "," ninteen "};
-    char *tens_place[]={"",""," twenty "," thirty "," fourty "," fifty "," sixty "," seventy "," eighty "," ninty "};
-    char *tens_power[]={" hundred "," thousand "};
+#include <iostream>
+using namespace std;
+ 
+string one[] = { "", "one ", "two ", "three ", "four ",
+                 "five ", "six ", "seven ", "eight ",
+                 "nine ", "ten ", "eleven ", "twelve ",
+                 "thirteen ", "fourteen ", "fifteen ",
+                 "sixteen ", "seventeen ", "eighteen ",
+                 "nineteen " };
+ 
+string tens_multiple[] = { "", "", "twenty ", "thirty ", "forty ",
+                 "fifty ", "sixty ", "seventy ", "eighty ",
+                 "ninety " };
+ 
+
+string num_To_words(int n, string s)
+{
+    string a = "";
+        if (n>99)
+        a += one[n/100] + "hundred " + tens_multiple[(n%100)/10] + one[n%10];
+        else if (n > 19)
+            a += tens_multiple[n / 10] + one[n % 10];
+       else
+          a += one[n];
+ 
+  if (n)
+        a += s;
+ 
+    return a;
+}
+ 
+
+string convert_To_words(unsigned long n)
+{
+    string result;
+ 
+    result += num_To_words((n / 1000000000UL), "billion, ");
     
-    
-    
-    printf("enter a no");
-    scanf("%s",a);
-    int len= strlen(a);
-    int num;
-    
-    if (len==1)
-    {
-        num=a[0]-48;
-        printf("%s",single[num]);    
-    }    
-        
-    if (len==2 && a[0]==49)
-    {
-        num=(a[0]-48)+(a[1]-48);
-        printf("%s",double_digit[num]);
-        
-    }
-    else if (len==2 && a[1]==48)
-    {
-       num=(a[0]-48)+(a[1]-48); 
-       printf("%s",tens_place[num]);
-       
-    }
-    else if (len==2)
-    {
-        num=(a[0]-48);
-        printf("%s",tens_place[num]);
-       
-        num=(a[1]-48);
-        printf("%s",single[num]);
-    }
-    else if (len==3)
-    {
-        num=(a[0]-48);
-        printf("%s",single[num]);
-        
-        
-        printf("%s",tens_power[0]);
-        num=(a[2]-48);
-        printf("%s",tens_place[num]);
-       
-       
-    }
-    else if (len==4)
-    {
-        num=(a[0]-48);
-        printf("%s",single[num]);
-        printf("%s",tens_power[1]);
-        num=(a[1]-48);
-        printf("%s",single[num]);
-        printf("%s",tens_power[0]);
-        num=(a[2]-48);
-        printf("%s",tens_place[num]);
-        num=(a[3]-48);
-        printf("%s",single[num]);
-       
-       
-    }
-    else
-    {
-        num=(a[0]-48);
-        printf("%s",tens_place[num]);
-        num=(a[1]-48);
-        printf("%s",single[num]);
-        printf("%s",tens_power[1]);
-        num=(a[2]-48);
-        printf("%s",single[num]);
-        printf("%s",tens_power[0]);
-        num=(a[3]-48);
-        printf("%s",tens_place[num]);
-        num=(a[4]-48);
-        printf("%s",single[num]);
-       
-       
-    }
-    
-    
+    result += num_To_words(((n / 1000000UL) % 1000UL), "million, ");
+
+    result += num_To_words(((n / 1000UL) % 1000UL), "thousand, ");
+
+    result += num_To_words(((n / 100UL) % 10UL), "hundred ");
+ 
+    if (n > 100 && n % 100)
+    result += "and ";
+    result += num_To_words((n % 100UL), ".");
+ 
+    return result;
+}
+ 
+
+int main()
+{
+   
+    unsigned long n;
+ 
+    cout << "Enter the number" << endl;
+    cin >> n;
+    cout << convert_To_words(n) << endl;
+ 
     return 0;
 }
