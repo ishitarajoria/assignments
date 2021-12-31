@@ -17,7 +17,7 @@ for(i=0;i<10;i++)
 {
 
    if(a[i]!=0)
-     print("%d" has appeared %d times\n",i,a[i]);
+     printf("%d has appeared %d times\n",i,a[i]);
 }
 return 0;
 }
