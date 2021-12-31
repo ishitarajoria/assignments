@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-long long int countOccurrances(long long int num)
+long long int OccurrenceOfdigit(long long int num)
 {
 int a[100]={0},rem,i;
 
@@ -26,7 +26,7 @@ int main()
 {  unsigned long long int n;
     printf("enter the no");
     scanf(" %llu",&n);
-    countOccurrances(n);
+    OccurrenceOfdigit(n);
     
     return 0;
 }
