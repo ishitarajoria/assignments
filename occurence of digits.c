@@ -1,9 +1,9 @@
+
 #include <stdio.h>
-int main()
+long long int countOccurrances(long long int num)
 {
-int a[10]={0},num,rem,i;
-printf("enter the no");
-scanf("%d",&num);
+int a[100]={0},rem,i;
+
 while(num)
 {
     rem=num%10;
@@ -19,5 +19,14 @@ for(i=0;i<10;i++)
    if(a[i]!=0)
      printf("%d has appeared %d times\n",i,a[i]);
 }
-return 0;
+
+}
+
+int main()
+{  unsigned long long int n;
+    printf("enter the no");
+    scanf(" %llu",&n);
+    countOccurrances(n);
+    
+    return 0;
 }
