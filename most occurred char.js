@@ -1,15 +1,17 @@
- let str = "My name is ishita!";
+  
+let str = "My Name is Ishita";
 
 let myMap = new Map();
 
-for(let ch of str.split("")){
-    if (myMap.has(ch)){
-        myMap.set(ch, (myMap.get(ch)+1) );
-    }else{
-        myMap.set(ch,1);
-    }
+for(let word of str.split(" ")){
+    for(let ch of word.split(""))
+        if (myMap.has(ch)){
+            myMap.set(ch, (myMap.get(ch)+1) );
+        }else{
+            myMap.set(ch,1);
+        }
 }
-console.log(myMap)
+
 let maxKey = "";
 let maxVal = 0;
 
