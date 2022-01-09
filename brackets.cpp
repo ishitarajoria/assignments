@@ -1,60 +1,58 @@
-
-
-#include <iostream>
-#include <stack>
-using namespace std;
-
-bool balancedbrackets(string expr)
+function BalancedBrackets(expr)
 {
-   stack<char> st;
-   char c;
-   int i;
+    
+    
+    let stack = [];
 
-   for(i=0;i<expr.length();i++)
-   {
-      if(expr[i]=='(' || expr[i]== '[' || expr[i]== '{')
-      {
-         st.push(expr[i]);
-         continue;
-      }
-      
-      if(st.empty())
-         return false;
-      switch(expr[i]) {
-          case ')':
-             c= st.top();
-             st.pop();
-             if (c!= '(')
-                return false;
-             break;
-          case '}':
-              c=st.top();
-              st.pop();
-              if (c!='{')
-                return false;
-              break;
-         case ']':
-              c=st.top();
-              st.pop();
-              if(c!='[')
-                 return false;
-                 break;
-         }
+    
+    for(let i = 0; i < expr.length; i++)
+    {
+       
+
+        if (expr[i] == '(' || expr[i] == '[' || expr[i] == '{')
+        {
+            
+            stack.push(expr[i]);
+            continue;
         }
-        return(st.empty());
+
+        
+        if (stack.length == 0)
+            return false;
+            
+        let x;
+        switch (expr[i]){
+        case ')':
+            x = stack.pop();
+            if (x == '{' || x == '[')
+                return false;
+            break;
+        case ']':
+            x = stack.pop();
+            if (x == '(' || x == '{')
+                return false;
+            break;
+
+        case '}':
+            x = stack.pop();
+            if (x == '(' || x == '[')
+                return false;
+            break;
+
+        }
+    }
+
+    return (stack.length == 0);
 }
 
-int main()
-{   string expression;
-    cout<<"enter the brackets:";
-    cin>>expression;
-    if(balancedbrackets(expression))
-    
-      cout<<"the expression is balanced";
-   else
-      cout<<"the expression is not balanced";
+
+let expr = "([{}])";
 
 
- }
-         
- 
+if (BalancedBrackets(expr))
+    document.write("The expression is Balanced ");
+else
+    document.write("The expression is Not Balanced ");
+
+
+
