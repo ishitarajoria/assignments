@@ -8,22 +8,22 @@ function findlongeststring(str)
 
 {
 
-    var words = str.replace(/[^\w\s]/g,"").split(" ")
+    var strings = str.split(" ")
 
-    var longestword= "";
-    for(var i=0;i<words.length;i++)
+    var longeststring= "";
+    for(var i=0;i<strings.length;i++)
     {
-        if(words[i].length>longestword.length)
+        if(strings[i].length>longeststring.length)
         {
-            longestword=words[i]
+            longeststring=strings[i]
         }
     }
   
-    return longestword;
+    return longeststring;
 
 }
 
 rl.question("Enter your sentence\n", function (answer) {
-  console.log("The Longest Word is => ", findlongeststring(answer))
+  console.log("The Longest string is => ", findlongeststring(answer))
   rl.close();
 });
